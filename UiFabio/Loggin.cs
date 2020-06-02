@@ -18,7 +18,7 @@ namespace UiFabio
     {
 
         
-         ClasLoggin clsLoggin = new ClasLoggin();
+        
         public Loggin()
         {
             InitializeComponent();

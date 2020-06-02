@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos", "Datos\Datos.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aplicacion", "Aplicacion\Aplicacion.csproj", "{2F045BD1-1A85-4D27-8181-16023DF31007}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DominioCore", "DominioCore\DominioCore.csproj", "{E929FACA-24E2-4EAB-AE77-78A51F85C21A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Datos_Frameworck", "Datos_Frameworck\Datos_Frameworck.csproj", "{D775469B-63A1-4FCD-A1FE-F5F50983C3E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{2F045BD1-1A85-4D27-8181-16023DF31007}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F045BD1-1A85-4D27-8181-16023DF31007}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F045BD1-1A85-4D27-8181-16023DF31007}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E929FACA-24E2-4EAB-AE77-78A51F85C21A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E929FACA-24E2-4EAB-AE77-78A51F85C21A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E929FACA-24E2-4EAB-AE77-78A51F85C21A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E929FACA-24E2-4EAB-AE77-78A51F85C21A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D775469B-63A1-4FCD-A1FE-F5F50983C3E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D775469B-63A1-4FCD-A1FE-F5F50983C3E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D775469B-63A1-4FCD-A1FE-F5F50983C3E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D775469B-63A1-4FCD-A1FE-F5F50983C3E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
