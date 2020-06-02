@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EmpresaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Diccionario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dic_abr" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="FechaIncercion" Type="date" />
+        </EntityType>
+        <EntityType Name="MODULO/USUARIO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="int" Nullable="false" />
+          <Property Name="ID_MODULO" Type="int" Nullable="false" />
+          <Property Name="FechaIncercion" Type="date" />
+        </EntityType>
+        <EntityType Name="MODULOS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_MOD" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="COD_MOD" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SECTOR_MOD" Type="int" Nullable="false" />
+          <Property Name="FechaIncercion" Type="date" />
+        </EntityType>
+        <EntityType Name="SUBMENU">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subMenu_nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="subMenu_Sys" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_SUBMODULO" Type="int" Nullable="false" />
+          <Property Name="FechaIncercion" Type="date" />
+        </EntityType>
+        <EntityType Name="SUBMODULOS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_SUBMOD" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SYS_NOM" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_MODULO" Type="int" Nullable="false" />
+          <Property Name="FechaIncercion" Type="date" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TERMINOS/DICCIONARIOS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_diccionario" Type="int" Nullable="false" />
+          <Property Name="term_abr" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaIncercion" Type="date" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contraseña" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="sector" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="acceso" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="FechaIncercion" Type="date" />
+          <Property Name="Email" Type="varbinary" MaxLength="50" />
+          <Property Name="Legajo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_MODULO/USUARIO_MODULOS">
+          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="1" />
+          <End Role="MODULO/USUARIO" Type="Self.MODULO/USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULOS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MODULO/USUARIO">
+              <PropertyRef Name="ID_MODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MODULO/USUARIO_USUARIOS">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="MODULO/USUARIO" Type="Self.MODULO/USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MODULO/USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUBMENU_SUBMODULOS">
+          <End Role="SUBMODULOS" Type="Self.SUBMODULOS" Multiplicity="1" />
+          <End Role="SUBMENU" Type="Self.SUBMENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUBMODULOS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SUBMENU">
+              <PropertyRef Name="ID_SUBMODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUBMODULOS_MODULOS">
+          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="1" />
+          <End Role="SUBMODULOS" Type="Self.SUBMODULOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULOS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SUBMODULOS">
+              <PropertyRef Name="ID_MODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TERMINOS/DICCIONARIOS_Diccionario">
+          <End Role="Diccionario" Type="Self.Diccionario" Multiplicity="1" />
+          <End Role="TERMINOS/DICCIONARIOS" Type="Self.TERMINOS/DICCIONARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diccionario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TERMINOS/DICCIONARIOS">
+              <PropertyRef Name="id_diccionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EmpresaModelStoreContainer">
+          <EntitySet Name="Diccionario" EntityType="Self.Diccionario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MODULO/USUARIO" EntityType="Self.MODULO/USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MODULOS" EntityType="Self.MODULOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUBMENU" EntityType="Self.SUBMENU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUBMODULOS" EntityType="Self.SUBMODULOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TERMINOS/DICCIONARIOS" EntityType="Self.TERMINOS/DICCIONARIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MODULO/USUARIO_MODULOS" Association="Self.FK_MODULO/USUARIO_MODULOS">
+            <End Role="MODULOS" EntitySet="MODULOS" />
+            <End Role="MODULO/USUARIO" EntitySet="MODULO/USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MODULO/USUARIO_USUARIOS" Association="Self.FK_MODULO/USUARIO_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="MODULO/USUARIO" EntitySet="MODULO/USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUBMENU_SUBMODULOS" Association="Self.FK_SUBMENU_SUBMODULOS">
+            <End Role="SUBMODULOS" EntitySet="SUBMODULOS" />
+            <End Role="SUBMENU" EntitySet="SUBMENU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUBMODULOS_MODULOS" Association="Self.FK_SUBMODULOS_MODULOS">
+            <End Role="MODULOS" EntitySet="MODULOS" />
+            <End Role="SUBMODULOS" EntitySet="SUBMODULOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TERMINOS/DICCIONARIOS_Diccionario" Association="Self.FK_TERMINOS/DICCIONARIOS_Diccionario">
+            <End Role="Diccionario" EntitySet="Diccionario" />
+            <End Role="TERMINOS/DICCIONARIOS" EntitySet="TERMINOS/DICCIONARIOS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EmpresaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Diccionario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dic_abr" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="FechaIncercion" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TERMINOS_DICCIONARIOS" Relationship="Self.FK_TERMINOS_DICCIONARIOS_Diccionario" FromRole="Diccionario" ToRole="TERMINOS_DICCIONARIOS" />
+        </EntityType>
+        <EntityType Name="MODULO_USUARIO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" />
+          <Property Name="ID_MODULO" Type="Int32" Nullable="false" />
+          <Property Name="FechaIncercion" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="MODULOS" Relationship="Self.FK_MODULO_USUARIO_MODULOS" FromRole="MODULO_USUARIO" ToRole="MODULOS" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_MODULO_USUARIO_USUARIOS" FromRole="MODULO_USUARIO" ToRole="USUARIOS" />
+        </EntityType>
+        <EntityType Name="MODULOS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_MOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COD_MOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SECTOR_MOD" Type="Int32" Nullable="false" />
+          <Property Name="FechaIncercion" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="MODULO_USUARIO" Relationship="Self.FK_MODULO_USUARIO_MODULOS" FromRole="MODULOS" ToRole="MODULO_USUARIO" />
+          <NavigationProperty Name="SUBMODULOS" Relationship="Self.FK_SUBMODULOS_MODULOS" FromRole="MODULOS" ToRole="SUBMODULOS" />
+        </EntityType>
+        <EntityType Name="SUBMENU">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subMenu_nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="subMenu_Sys" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_SUBMODULO" Type="Int32" Nullable="false" />
+          <Property Name="FechaIncercion" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="SUBMODULOS" Relationship="Self.FK_SUBMENU_SUBMODULOS" FromRole="SUBMENU" ToRole="SUBMODULOS" />
+        </EntityType>
+        <EntityType Name="SUBMODULOS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_SUBMOD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SYS_NOM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_MODULO" Type="Int32" Nullable="false" />
+          <Property Name="FechaIncercion" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="MODULOS" Relationship="Self.FK_SUBMODULOS_MODULOS" FromRole="SUBMODULOS" ToRole="MODULOS" />
+          <NavigationProperty Name="SUBMENU" Relationship="Self.FK_SUBMENU_SUBMODULOS" FromRole="SUBMODULOS" ToRole="SUBMENU" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TERMINOS_DICCIONARIOS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_diccionario" Type="Int32" Nullable="false" />
+          <Property Name="term_abr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaIncercion" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Diccionario" Relationship="Self.FK_TERMINOS_DICCIONARIOS_Diccionario" FromRole="TERMINOS_DICCIONARIOS" ToRole="Diccionario" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="acceso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="FechaIncercion" Type="DateTime" Precision="0" />
+          <Property Name="Email" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="Legajo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MODULO_USUARIO" Relationship="Self.FK_MODULO_USUARIO_USUARIOS" FromRole="USUARIOS" ToRole="MODULO_USUARIO" />
+        </EntityType>
+        <Association Name="FK_TERMINOS_DICCIONARIOS_Diccionario">
+          <End Role="Diccionario" Type="Self.Diccionario" Multiplicity="1" />
+          <End Role="TERMINOS_DICCIONARIOS" Type="Self.TERMINOS_DICCIONARIOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diccionario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TERMINOS_DICCIONARIOS">
+              <PropertyRef Name="id_diccionario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MODULO_USUARIO_MODULOS">
+          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="1" />
+          <End Role="MODULO_USUARIO" Type="Self.MODULO_USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULOS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MODULO_USUARIO">
+              <PropertyRef Name="ID_MODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MODULO_USUARIO_USUARIOS">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="MODULO_USUARIO" Type="Self.MODULO_USUARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MODULO_USUARIO">
+              <PropertyRef Name="ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUBMODULOS_MODULOS">
+          <End Role="MODULOS" Type="Self.MODULOS" Multiplicity="1" />
+          <End Role="SUBMODULOS" Type="Self.SUBMODULOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULOS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SUBMODULOS">
+              <PropertyRef Name="ID_MODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUBMENU_SUBMODULOS">
+          <End Role="SUBMODULOS" Type="Self.SUBMODULOS" Multiplicity="1" />
+          <End Role="SUBMENU" Type="Self.SUBMENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUBMODULOS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SUBMENU">
+              <PropertyRef Name="ID_SUBMODULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EmpresaContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Diccionario" EntityType="Self.Diccionario" />
+          <EntitySet Name="MODULO_USUARIO" EntityType="Self.MODULO_USUARIO" />
+          <EntitySet Name="MODULOS" EntityType="Self.MODULOS" />
+          <EntitySet Name="SUBMENU" EntityType="Self.SUBMENU" />
+          <EntitySet Name="SUBMODULOS" EntityType="Self.SUBMODULOS" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TERMINOS_DICCIONARIOS" EntityType="Self.TERMINOS_DICCIONARIOS" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+          <AssociationSet Name="FK_TERMINOS_DICCIONARIOS_Diccionario" Association="Self.FK_TERMINOS_DICCIONARIOS_Diccionario">
+            <End Role="Diccionario" EntitySet="Diccionario" />
+            <End Role="TERMINOS_DICCIONARIOS" EntitySet="TERMINOS_DICCIONARIOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MODULO_USUARIO_MODULOS" Association="Self.FK_MODULO_USUARIO_MODULOS">
+            <End Role="MODULOS" EntitySet="MODULOS" />
+            <End Role="MODULO_USUARIO" EntitySet="MODULO_USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MODULO_USUARIO_USUARIOS" Association="Self.FK_MODULO_USUARIO_USUARIOS">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="MODULO_USUARIO" EntitySet="MODULO_USUARIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUBMODULOS_MODULOS" Association="Self.FK_SUBMODULOS_MODULOS">
+            <End Role="MODULOS" EntitySet="MODULOS" />
+            <End Role="SUBMODULOS" EntitySet="SUBMODULOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUBMENU_SUBMODULOS" Association="Self.FK_SUBMENU_SUBMODULOS">
+            <End Role="SUBMODULOS" EntitySet="SUBMODULOS" />
+            <End Role="SUBMENU" EntitySet="SUBMENU" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EmpresaModelStoreContainer" CdmEntityContainer="EmpresaContext">
+          <EntitySetMapping Name="Diccionario">
+            <EntityTypeMapping TypeName="EmpresaModel.Diccionario">
+              <MappingFragment StoreEntitySet="Diccionario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="dic_abr" ColumnName="dic_abr" />
+                <ScalarProperty Name="FechaIncercion" ColumnName="FechaIncercion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MODULO_USUARIO">
+            <EntityTypeMapping TypeName="EmpresaModel.MODULO_USUARIO">
+              <MappingFragment StoreEntitySet="MODULO/USUARIO">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="ID_MODULO" ColumnName="ID_MODULO" />
+                <ScalarProperty Name="FechaIncercion" ColumnName="FechaIncercion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MODULOS">
+            <EntityTypeMapping TypeName="EmpresaModel.MODULOS">
+              <MappingFragment StoreEntitySet="MODULOS">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NOMBRE_MOD" ColumnName="NOMBRE_MOD" />
+                <ScalarProperty Name="COD_MOD" ColumnName="COD_MOD" />
+                <ScalarProperty Name="SECTOR_MOD" ColumnName="SECTOR_MOD" />
+                <ScalarProperty Name="FechaIncercion" ColumnName="FechaIncercion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUBMENU">
+            <EntityTypeMapping TypeName="EmpresaModel.SUBMENU">
+              <MappingFragment StoreEntitySet="SUBMENU">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="subMenu_nombre" ColumnName="subMenu_nombre" />
+                <ScalarProperty Name="subMenu_Sys" ColumnName="subMenu_Sys" />
+                <ScalarProperty Name="ID_SUBMODULO" ColumnName="ID_SUBMODULO" />
+                <ScalarProperty Name="FechaIncercion" ColumnName="FechaIncercion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUBMODULOS">
+            <EntityTypeMapping TypeName="EmpresaModel.SUBMODULOS">
+              <MappingFragment StoreEntitySet="SUBMODULOS">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NOMBRE_SUBMOD" ColumnName="NOMBRE_SUBMOD" />
+                <ScalarProperty Name="SYS_NOM" ColumnName="SYS_NOM" />
+                <ScalarProperty Name="ID_MODULO" ColumnName="ID_MODULO" />
+                <ScalarProperty Name="FechaIncercion" ColumnName="FechaIncercion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EmpresaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TERMINOS_DICCIONARIOS">
+            <EntityTypeMapping TypeName="EmpresaModel.TERMINOS_DICCIONARIOS">
+              <MappingFragment StoreEntitySet="TERMINOS/DICCIONARIOS">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_diccionario" ColumnName="id_diccionario" />
+                <ScalarProperty Name="term_abr" ColumnName="term_abr" />
+                <ScalarProperty Name="FechaIncercion" ColumnName="FechaIncercion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOS">
+            <EntityTypeMapping TypeName="EmpresaModel.USUARIOS">
+              <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="sector" ColumnName="sector" />
+                <ScalarProperty Name="acceso" ColumnName="acceso" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaIncercion" ColumnName="FechaIncercion" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Legajo" ColumnName="Legajo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

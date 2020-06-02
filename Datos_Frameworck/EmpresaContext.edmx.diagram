@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b8e953c22b44476d90a8afdeea43b762" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="EmpresaModel.Diccionario" Width="1.5" PointX="9.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmpresaModel.MODULO_USUARIO" Width="1.5" PointX="1.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmpresaModel.MODULOS" Width="1.5" PointX="3.625" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmpresaModel.SUBMENU" Width="1.5" PointX="8.875" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmpresaModel.SUBMODULOS" Width="1.5" PointX="6.375" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmpresaModel.sysdiagrams" Width="1.5" PointX="22.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmpresaModel.TERMINOS_DICCIONARIOS" Width="1.5" PointX="11.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmpresaModel.USUARIOS" Width="1.5" PointX="4.75" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="EmpresaModel.FK_TERMINOS_DICCIONARIOS_Diccionario" ManuallyRouted="false" />
+        <AssociationConnector Association="EmpresaModel.FK_MODULO_USUARIO_MODULOS" ManuallyRouted="false" />
+        <AssociationConnector Association="EmpresaModel.FK_MODULO_USUARIO_USUARIOS" ManuallyRouted="false" />
+        <AssociationConnector Association="EmpresaModel.FK_SUBMODULOS_MODULOS" ManuallyRouted="false" />
+        <AssociationConnector Association="EmpresaModel.FK_SUBMENU_SUBMODULOS" ManuallyRouted="false" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
