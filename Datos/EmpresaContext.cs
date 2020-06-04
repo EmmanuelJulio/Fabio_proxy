@@ -5,8 +5,8 @@ using Dominio.Entities;
 
 namespace Datos
 {
-    //public partial class EmpresaContext : DbContext
-    //{
+    public partial class EmpresaContext : DbContext
+    {
     //    public EmpresaContext()
     //    {
     //    }
